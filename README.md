@@ -162,9 +162,45 @@ A suspicious Azure abuse report led to the discovery of crypto-mining and extern
 - Platform abuse through brute-force  
 - No outbound egress restrictions + weak SSH creds
 
+<img src="https://img.shields.io/badge/-HOW-000000?style=for-the-badge&logo=github&logoColor=white" /> 
+- The attacker gained entry using brute force attacks and was able to gain entry due to weak credentials  
+- They hid their activity using scripts and scheduled tasks.
+
+---
+
+<img src="https://img.shields.io/badge/-RECOMMENDATIONS-228B22?style=for-the-badge&logo=vercel&logoColor=white" />
+
+1. **Secure Remote Access**  
+   Limit who can connect to systems remotely and require strong, unique passwords or authentication methods.
+
+2. **Block Malicious Traffic**  
+   Prevent compromised systems from connecting to known hacker servers or mining networks by controlling outbound network traffic.
+
+3. **Update Credentials**  
+   Immediately change all passwords on affected systems and avoid using shared or reused credentials going forward.
+
+4. **Monitor for Suspicious Behavior**  
+   Set up security alerts to catch unusual logins or hidden programs that could signal another attack.
+
+5. **Clean Up and Reset**  
+   Remove all infected systems, restore from clean backups, and do not reuse compromised virtual machines or images.
+
+---
+
+<img src="https://img.shields.io/badge/-TIMELINE-4169E1?style=for-the-badge&logo=clockify&logoColor=white" />
+
+| Date       | Event                                      |
+|------------|--------------------------------------------|
+| Feb 18     | Attacker gained access via weak credentials |
+| Feb 20–22  | Crypto-mining tools installed and active    |
+| Mar 14–17  | Outbound brute-force attacks launched       |
+| Mar 18     | Microsoft abuse alert triggered             |
+| Mar 20     | Incident fully contained and cleaned        |
+
 <br>
 <a href="#incident-library"><img src="https://img.shields.io/badge/-Back_to_Incident_Library-555?style=for-the-badge&logo=homeassistant&logoColor=white" /></a>
 
+
 &nbsp;  
 &nbsp;  
 &nbsp;  
@@ -228,7 +264,7 @@ A suspicious Azure abuse report led to the discovery of crypto-mining and extern
 &nbsp;  
 &nbsp; 
 
-### Incident 2401 Summary  
+## Incident 2401 Summary  
 # Incident 2401 – Linux VM Compromise: XorDDoS Malware  
 **Incident ID:** 2401  
 **Date Investigated:** March 24, 2025  
@@ -236,48 +272,94 @@ A suspicious Azure abuse report led to the discovery of crypto-mining and extern
 
 ---
 
+<img src="https://img.shields.io/badge/-INCIDENT_SUMMARY-0078D4?style=for-the-badge&logo=bookstack&logoColor=white" />
+
+A Linux VM exposed to the internet was compromised through brute-force SSH attacks. The attacker deployed XorDDoS malware, maintained access over time using hidden cron jobs and SSH keys, and communicated with a known command-and-control (C2) server. Attempts were also made to move laterally and hide their presence using renamed system binaries.
+
+---
+
 <img src="https://img.shields.io/badge/-WHO-000000?style=for-the-badge&logo=github&logoColor=white" />
 
 - Compromised host: `jr-linux-vm-test`  
-- Attacker: XorDDoS malware operators using SSH brute force  
-- Root account (`root`) compromised via weak credentials
+- Attacker used public SSH scanning infrastructure  
+- C2 IP observed: `169.239.130.12`
 
 ---
 
 <img src="https://img.shields.io/badge/-WHAT-000000?style=for-the-badge&logo=github&logoColor=white" />
 
-- SSH brute-force → XorDDoS malware deployed  
-- Persistence via cron jobs and fake system binaries  
-- Log wiping, system abuse, and crypto mining observed  
-- C2 communication to IP `169.239.130.12`
+- Malware: XorDDoS variant deployed post-compromise  
+- Persistence via cron jobs, fake system binaries  
+- C2 communication and botnet control attempts
 
 ---
 
 <img src="https://img.shields.io/badge/-WHEN-000000?style=for-the-badge&logo=github&logoColor=white" />
 
-- Initial compromise: Jan 30, 2025  
-- Cleanup attempt: Mar 18–20  
-- Re-entry & persistence: Mar 24–25
+- Initial access: Jan 30, 2025 - Feb 28, 2025  
+- Malware activity re-detected: Mar 24, 2025  
+- Previous cleanup done: Mar 18–20  
 
 ---
 
 <img src="https://img.shields.io/badge/-WHERE-000000?style=for-the-badge&logo=github&logoColor=white" />
 
-- Azure-hosted Linux VM (`jr-linux-vm-test`)  
-- External origin IPs from botnets and C2 infrastructure  
-- C2 traffic over HTTP (port 80)
+- Azure-hosted VM: `jr-linux-vm-test`  
+- C2 communication over HTTP (port 80)  
+- External origin IPs associated with botnet activity
 
 ---
 
 <img src="https://img.shields.io/badge/-WHY-000000?style=for-the-badge&logo=github&logoColor=white" />
 
-- Crypto-mining and lateral movement via SSH  
-- Weak SSH security allowed re-entry post-cleanup  
-- Evasion through renamed binaries, cron jobs, and fake services
+- Maintain access for malware deployment and system abuse  
+- Resource hijacking (CPU/traffic) and possible lateral movement  
+- Weak SSH configuration enabled multiple compromises
+
+---
+
+<img src="https://img.shields.io/badge/-HOW-000000?style=for-the-badge&logo=github&logoColor=white" />
+
+- Gained root access via SSH brute-force  
+- Injected SSH keys and set up malicious cron jobs  
+- Used renamed Linux binaries to evade detection  
+- Connected to known XorDDoS C2 infrastructure
+
+---
+
+<img src="https://img.shields.io/badge/-RECOMMENDATIONS-228B22?style=for-the-badge&logo=vercel&logoColor=white" />
+
+1. **Harden SSH Access**  
+   Restrict access to known IPs and use key-based authentication.
+
+2. **Rotate Credentials**  
+   Change all passwords and keys, especially for root and shared users.
+
+3. **Rebuild Systems**  
+   Don’t reuse infected machines — Delete the VMs.
+
+4. **Block Malicious Infrastructure**  
+   Use threat intel to block known C2 servers like `169.239.130.12`.
+
+5. **Increase Monitoring**  
+   Watch for signs of persistence (cron jobs, SSH key changes, renamed binaries).
+
+---
+
+<img src="https://img.shields.io/badge/-TIMELINE-4169E1?style=for-the-badge&logo=clockify&logoColor=white" />
+
+| Date       | Event                                      |
+|------------|--------------------------------------------|
+| Jan 30     | Initial SSH brute-force compromise         |
+| Feb–Mar    | Dormant persistence (no alerts)            |
+| Mar 18–20  | Cleanup attempt performed                  |
+| Mar 24     | Malware re-detected and C2 communication observed |
+| Mar 25     | Host isolated and deleted                |
 
 <br>
 <a href="#incident-library"><img src="https://img.shields.io/badge/-Back_to_Incident_Library-555?style=for-the-badge&logo=homeassistant&logoColor=white" /></a>
 
+
 &nbsp;  
 &nbsp;  
 &nbsp;  
@@ -341,7 +423,7 @@ A suspicious Azure abuse report led to the discovery of crypto-mining and extern
 &nbsp;  
 &nbsp; 
 
-### Incident 2402 Summary  
+## Incident 2402 Summary  
 # Incident 2402 – Password Spray Attempt (No Compromise)  
 **Incident ID:** 2402  
 **Date Investigated:** March 30, 2025  
@@ -349,41 +431,85 @@ A suspicious Azure abuse report led to the discovery of crypto-mining and extern
 
 ---
 
+<img src="https://img.shields.io/badge/-INCIDENT_SUMMARY-0078D4?style=for-the-badge&logo=bookstack&logoColor=white" />
+
+A high-severity alert flagged suspicious logon activity targeting an internet-facing lab VM. Investigation confirmed a password spray attempt from external IPs, focused on the built-in `guest` account. No successful authentication or system compromise occurred. The device was not enrolled in endpoint protection and was publicly exposed at the time of the attack.
+
+---
+
 <img src="https://img.shields.io/badge/-WHO-000000?style=for-the-badge&logo=github&logoColor=white" />
 
-- Targeted host: `finallabscott` (internet-facing, no MDE)  
-- Attacker IPs from China & Russia (e.g. `218.92.0.186`, `5.178.87.180`)  
-- Account targeted: `guest`
+- Targeted device: `finallabscott`  
+- Attacker IPs from: China, Russia, and global scanning infrastructure  
+- Account targeted: `guest` (built-in, enabled)
 
 ---
 
 <img src="https://img.shields.io/badge/-WHAT-000000?style=for-the-badge&logo=github&logoColor=white" />
 
-- Detected password spray attack  
-- 1,000+ failed logon attempts from multiple IPs  
-- No successful authentication or shell activity
+- Password spray attack (1,000+ failed attempts)  
+- Attempted remote login via "Network Logon"  
+- No successful authentication or shell activity observed
 
 ---
 
 <img src="https://img.shields.io/badge/-WHEN-000000?style=for-the-badge&logo=github&logoColor=white" />
 
-- Alert triggered: Mar 29, 2025 – 3:30 PM  
-- Extended review: past 7 days of logs
+- Alert triggered: Mar 29, 2025  
+- Logs reviewed: Mar 23–30, 2025
 
 ---
 
 <img src="https://img.shields.io/badge/-WHERE-000000?style=for-the-badge&logo=github&logoColor=white" />
 
-- Device `finallabscott` (unmanaged, exposed to internet)  
-- Logon attempts from China, Russia, and global botnet IPs
+- Device: `finallabscott`  
+- Exposure: Internet-facing with no Defender for Endpoint  
+- Remote IPs: `218.92.0.186`, `5.178.87.180` (VT: known scanners)
 
 ---
 
 <img src="https://img.shields.io/badge/-WHY-000000?style=for-the-badge&logo=github&logoColor=white" />
 
-- Guest account was active and accessible  
-- No compromise occurred  
-- Weak external posture + lack of MDE made it a soft target
+- External actors targeting public systems with weak/default credentials  
+- Guest account was accessible and lacked protections  
+- Likely part of a mass credential stuffing campaign
+
+---
+
+<img src="https://img.shields.io/badge/-HOW-000000?style=for-the-badge&logo=github&logoColor=white" />
+
+- Automated spray tools attempted login to `guest` account  
+- No lateral movement, persistence, or malware seen  
+- Failed authentication logs confirmed across multiple time windows
+
+---
+
+<img src="https://img.shields.io/badge/-RECOMMENDATIONS-228B22?style=for-the-badge&logo=vercel&logoColor=white" />
+
+1. **Disable Unused Accounts**  
+   Remove or disable default/guest accounts across all VMs.
+
+2. **Limit Exposure**  
+   Avoid exposing unmanaged devices directly to the internet.
+
+3. **Enable Endpoint Protection**  
+   Enroll all devices in Defender for Endpoint or equivalent tools.
+
+4. **Geo-Block Suspicious IPs**  
+   Block known malicious ranges from untrusted regions where possible.
+
+5. **Enforce Lockout Policies**  
+   Implement lockout after failed login attempts to prevent enumeration.
+
+---
+
+<img src="https://img.shields.io/badge/-TIMELINE-4169E1?style=for-the-badge&logo=clockify&logoColor=white" />
+
+| Date       | Event                                        |
+|------------|----------------------------------------------|
+| Mar 23–29  | Multiple failed logons targeting `guest`     |
+| Mar 29     | Alert triggered by Sentinel (Password Spray) |
+| Mar 30     | Incident triaged, no compromise confirmed    |
 
 <br>
 <a href="#incident-library"><img src="https://img.shields.io/badge/-Back_to_Incident_Library-555?style=for-the-badge&logo=homeassistant&logoColor=white" /></a>
