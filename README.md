@@ -162,6 +162,9 @@ A suspicious Azure abuse report led to the discovery of crypto-mining and extern
 - Platform abuse through brute-force  
 - No outbound egress restrictions + weak SSH creds
 
+<br>
+<a href="#incident-library"><img src="https://img.shields.io/badge/-Back_to_Incident_Library-555?style=for-the-badge&logo=homeassistant&logoColor=white" /></a>
+
 &nbsp;  
 &nbsp;  
 &nbsp;  
@@ -272,6 +275,9 @@ A suspicious Azure abuse report led to the discovery of crypto-mining and extern
 - Weak SSH security allowed re-entry post-cleanup  
 - Evasion through renamed binaries, cron jobs, and fake services
 
+<br>
+<a href="#incident-library"><img src="https://img.shields.io/badge/-Back_to_Incident_Library-555?style=for-the-badge&logo=homeassistant&logoColor=white" /></a>
+
 &nbsp;  
 &nbsp;  
 &nbsp;  
@@ -379,4 +385,5 @@ A suspicious Azure abuse report led to the discovery of crypto-mining and extern
 - No compromise occurred  
 - Weak external posture + lack of MDE made it a soft target
 
-
+<br>
+<a href="#incident-library"><img src="https://img.shields.io/badge/-Back_to_Incident_Library-555?style=for-the-badge&logo=homeassistant&logoColor=white" /></a>
