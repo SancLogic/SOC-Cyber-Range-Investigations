@@ -8,7 +8,7 @@
 <h1 align="center">SOC Cyber Range Investigations</h1>
 
 <p align="center">
-  Real-world threat hunting, detections, and incident response simulations performed in a student cyber range environment.
+  Real-world threat activity investigated through hands-on detection and response inside a student cyber range environment.
 </p>
 
 ---
@@ -114,8 +114,8 @@
 ## Incident 2400 Summary  
 # Incident 2400 – Azure Abuse, Crypto-Mining & Brute-Force  
 **Incident ID:** 2400  
-**Date Investigated:** March 23, 2025  
-**Environment:** Pacific | Cyber Range
+**Date Investigated:** March 18, 2025  
+**Environment:** LOG(N) Pacific | Cyber Range
 
 ---
 
@@ -161,3 +161,222 @@ A suspicious Azure abuse report led to the discovery of crypto-mining and extern
 - Crypto-mining for financial gain  
 - Platform abuse through brute-force  
 - No outbound egress restrictions + weak SSH creds
+
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp; 
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp; 
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp; 
+
+### Incident 2401 Summary  
+# Incident 2401 – Linux VM Compromise: XorDDoS Malware  
+**Incident ID:** 2401  
+**Date Investigated:** March 24, 2025  
+**Environment:** LOG(N) Pacific | Cyber Range
+
+---
+
+<img src="https://img.shields.io/badge/-WHO-000000?style=for-the-badge&logo=github&logoColor=white" />
+
+- Compromised host: `jr-linux-vm-test`  
+- Attacker: XorDDoS malware operators using SSH brute force  
+- Root account (`root`) compromised via weak credentials
+
+---
+
+<img src="https://img.shields.io/badge/-WHAT-000000?style=for-the-badge&logo=github&logoColor=white" />
+
+- SSH brute-force → XorDDoS malware deployed  
+- Persistence via cron jobs and fake system binaries  
+- Log wiping, system abuse, and crypto mining observed  
+- C2 communication to IP `169.239.130.12`
+
+---
+
+<img src="https://img.shields.io/badge/-WHEN-000000?style=for-the-badge&logo=github&logoColor=white" />
+
+- Initial compromise: Jan 30, 2025  
+- Cleanup attempt: Mar 18–20  
+- Re-entry & persistence: Mar 24–25
+
+---
+
+<img src="https://img.shields.io/badge/-WHERE-000000?style=for-the-badge&logo=github&logoColor=white" />
+
+- Azure-hosted Linux VM (`jr-linux-vm-test`)  
+- External origin IPs from botnets and C2 infrastructure  
+- C2 traffic over HTTP (port 80)
+
+---
+
+<img src="https://img.shields.io/badge/-WHY-000000?style=for-the-badge&logo=github&logoColor=white" />
+
+- Crypto-mining and lateral movement via SSH  
+- Weak SSH security allowed re-entry post-cleanup  
+- Evasion through renamed binaries, cron jobs, and fake services
+
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp; 
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp; 
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp; 
+
+### Incident 2402 Summary  
+# Incident 2402 – Password Spray Attempt (No Compromise)  
+**Incident ID:** 2402  
+**Date Investigated:** March 30, 2025  
+**Environment:** LOG(N) Pacific | Cyber Range
+
+---
+
+<img src="https://img.shields.io/badge/-WHO-000000?style=for-the-badge&logo=github&logoColor=white" />
+
+- Targeted host: `finallabscott` (internet-facing, no MDE)  
+- Attacker IPs from China & Russia (e.g. `218.92.0.186`, `5.178.87.180`)  
+- Account targeted: `guest`
+
+---
+
+<img src="https://img.shields.io/badge/-WHAT-000000?style=for-the-badge&logo=github&logoColor=white" />
+
+- Detected password spray attack  
+- 1,000+ failed logon attempts from multiple IPs  
+- No successful authentication or shell activity
+
+---
+
+<img src="https://img.shields.io/badge/-WHEN-000000?style=for-the-badge&logo=github&logoColor=white" />
+
+- Alert triggered: Mar 29, 2025 – 3:30 PM  
+- Extended review: past 7 days of logs
+
+---
+
+<img src="https://img.shields.io/badge/-WHERE-000000?style=for-the-badge&logo=github&logoColor=white" />
+
+- Device `finallabscott` (unmanaged, exposed to internet)  
+- Logon attempts from China, Russia, and global botnet IPs
+
+---
+
+<img src="https://img.shields.io/badge/-WHY-000000?style=for-the-badge&logo=github&logoColor=white" />
+
+- Guest account was active and accessible  
+- No compromise occurred  
+- Weak external posture + lack of MDE made it a soft target
+
+
