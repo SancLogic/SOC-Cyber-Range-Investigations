@@ -26,20 +26,72 @@
 
 ### Incident-2400: Azure Abuse – Crypto-Mining & Brute-Force  
 - [📄 Full Report](./Reports/incident-2400-azure-abuse-crypto-mining-brute-force.pdf)  
-- [📝 Summary](./summaries/incident-2400-summary.md) *(coming soon)*  
+- [📝 Summary](#incident-2400-summary)  
 - [📌 IOCs] *(coming soon)*
 
 ---
 
-### Incident-2401: Linux VM Compromise – XorDDoS Malware  
-- [📄 Full Report](./Reports/incident-2401-linux-vm-xorddos-compromise.pdf)  
-- [📝 Summary](./summaries/incident-2401-summary.md) *(coming soon)*  
+### Incident-2401: Azure Abuse – Crypto-Mining & Brute-Force  
+- [📄 Full Report](./Reports/incident-2400-azure-abuse-crypto-mining-brute-force.pdf)  
+- [📝 Summary](#incident-2401-summary)  
 - [📌 IOCs] *(coming soon)*
 
 ---
 
-### Incident-2402: Password Spray (No Compromise)  
-- [📄 Full Report](./Reports/incident-2402-password-spray-finallabscott.pdf)  
-- [📝 Summary](./summaries/incident-2402-summary.md) *(coming soon)*  
-- [📌 IOCs] – 1 external IP observed, no internal compromise
+### Incident-2402: Azure Abuse – Crypto-Mining & Brute-Force  
+- [📄 Full Report](./Reports/incident-2400-azure-abuse-crypto-mining-brute-force.pdf)  
+- [📝 Summary](#incident-2402-summary)
+
+
+## Incident 2400 Summary
+
+# Incident 2400 – Azure Abuse, Crypto-Mining & Brute-Force  
+**Incident ID:** 2400  
+**Date Investigated:** March 23, 2025  
+**Environment:** Pacific | Cyber Range
+
+---
+
+<img src="https://img.shields.io/badge/-INCIDENT_SUMMARY-0078D4?style=for-the-badge&logo=bookstack&logoColor=white" />
+
+A suspicious Azure abuse report led to the discovery of crypto-mining and external brute-force attacks originating from internal lab VMs. The attacker exploited weak SSH credentials, deployed miner payloads, and used compromised systems to launch outbound brute-force attacks to external services.
+
+---
+
+<img src="https://img.shields.io/badge/-WHO-000000?style=for-the-badge&logo=github&logoColor=white" />
+
+- Initial compromised host: `linux-vulnmgmt-kobe`  
+- Laterally moved to: `levi-linux-vulnerability`, `sakel-lunix-2`  
+- External targets included YouTube, Twitter, etc.
+
+---
+
+<img src="https://img.shields.io/badge/-WHAT-000000?style=for-the-badge&logo=github&logoColor=white" />
+
+- Miner binaries: `.diicot`, `.balu`, `.bisis`  
+- Downloaded via `wget` and `curl`  
+- 240K+ outbound brute-force attempts via SSH
+
+---
+
+<img src="https://img.shields.io/badge/-WHEN-000000?style=for-the-badge&logo=github&logoColor=white" />
+
+- Initial compromise: Feb 18, 2025  
+- Mining activity: Feb 20–22  
+- Outbound abuse: Mar 14–17
+
+---
+
+<img src="https://img.shields.io/badge/-WHERE-000000?style=for-the-badge&logo=github&logoColor=white" />
+
+- Internal lab: Azure-hosted Linux VMs  
+- Public IP involved: `20.81.228.191`
+
+---
+
+<img src="https://img.shields.io/badge/-WHY-000000?style=for-the-badge&logo=github&logoColor=white" />
+
+- Crypto-mining for financial gain  
+- Platform abuse through brute-force  
+- No outbound egress restrictions + weak SSH creds
 
