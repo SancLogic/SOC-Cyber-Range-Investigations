@@ -58,3 +58,7 @@
 | `crontab -r`                    | Cleanup persistence                 |
 | `chattr -iae ~/.ssh/authorized_keys` | Modify SSH auth for persistence |
 
+## Notes
+- SSH brute-force originated from infected Azure-hosted Linux VMs.
+- Attacker infrastructure reused across incidents and binaries.
+- MITRE mappings: T1496, T1027, T1036, T1098, T1564.001, T1053.003
