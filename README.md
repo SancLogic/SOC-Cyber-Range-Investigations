@@ -21,7 +21,7 @@
 
 ---
 
-<img src="https://img.shields.io/badge/INCIDENT_LIBRARY-0078D4?style=for-the-badge&logo=azuredevops&logoColor=white" />
+## Incident Library
 
 ### Incident-2400: Azure Abuse – Crypto-Mining & Brute-Force  
 <a href="./Reports/incident-2400-azure-abuse-crypto-mining-brute-force.pdf"><img src="https://img.shields.io/badge/-Full_Report-grey?style=for-the-badge&logo=readthedocs&logoColor=white" /></a>
